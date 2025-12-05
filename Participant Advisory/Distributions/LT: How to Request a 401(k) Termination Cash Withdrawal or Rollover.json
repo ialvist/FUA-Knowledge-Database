@@ -39,12 +39,11 @@
         "Checks are typically delivered in about 2–3 weeks after approval, while wires typically complete in about 1–2 weeks depending on the receiving institution."
       ],
       "key_steps_summary": [
-        "Confirm the participant has separated from service and can access the ForUsAll participant portal.",
+        "Confirm the participant has separated from service and can access the ForUsAll participant portal using the data available in the internal discussion. If the participant doesn't meet the eligibility criteria, don't proceed with the flow. Instead, read the common issues section of this article.",
         "Have the participant log in, go to Loans and Distributions, and select the distribution reason Separation of Service (or Default if that is the only option).",
-        "Review vesting and sources, enter email confirmation information, and choose the distribution type (cash, rollover, or combination).",
-        "Collect and enter the appropriate delivery details (mailing address, wire instructions, or receiving institution and account information).",
-        "Review elections, taxes, and delivery method, submit the request, and advise the participant on expected review and delivery timelines.",
-        "If the participant cannot use the portal, redirect the participant to the ForUsAll support line to complete the process over the phone."
+        "Review vesting and sources, enter email confirmation information, and choose the distribution type (cash, rollover, or combination) in the portal.",
+        "Collect and enter the appropriate delivery details (mailing address, wire instructions, or receiving institution and account information) in the portal.",
+        "Review elections, taxes, and delivery method, submit the request, and advise the participant on expected review and delivery timelines in the portal."
       ],
       "high_impact_faq_pairs": [
         {
@@ -144,7 +143,7 @@
             "The ForUsAll participant portal is the preferred and fastest way to submit a termination distribution request.",
             "Participants should use the distribution reason Separation of Service; if this is not available, they may select Default and proceed.",
             "A display of none in the email confirmation area on the confirmation screen can be a known display issue and may be ignored if a valid email was entered earlier.",
-            "If the participant cannot log in or use the portal, they can request a RightSignature Electronic Form as a secondary, slower option."
+            "If the participant cannot log in or use the portal, make sure that this participant is enrolled in MFA. If the participant is enrolled in MFA, ask the participant to contact ForUsAll support line to complete the process over the phone. If the participant is not enrolled in MFA, ask the participant to create the ForUsAll account with the email address on file."
           ]
         },
         {
@@ -159,19 +158,19 @@
       "steps": [
         {
           "step_number": 1,
-          "type": "participant-facing",
-          "visibility": "ai agent",
-          "description": "Confirm the participant has a termination date and terminated status in the participant_data in the internal comments of the DevRev Ticket.",
-          "notes": "If the participant doesn't meet the eligibility criteria, read the common issues section of this article."
+          "type": "internal-check",
+          "visibility": "agent-only",
+          "description": "Confirm the participant has a termination date and terminated status in the participant_data in the internal discussion.",
+          "notes": "If the participant doesn't meet the eligibility criteria, don't proceed with the flow. Instead, read the common issues section of this article."
         },
         { 
           "step_number": 2,
           "type": "participant-facing",
           "visibility": "both",
-          "description": "Log in to your ForUsAll 401(k) participant portal.",
+          "description": "Ask the user to log in to their ForUsAll 401(k) participant portal.",
           "notes": "We need to ensure to include this step. This was previously the first step. -- Ensure you have left your employer, can access the ForUsAll participant portal, and have your mailing address, banking details (for wires), and receiving institution information if doing a rollover. From the dashboard, click Loans & Distributions in the upper-right corner. Submitting through the portal is the fastest way to process your request."
         },
-        {
+        { 
           "step_number": 3,
           "type": "participant-facing",
           "visibility": "both",
@@ -219,22 +218,15 @@
           "visibility": "both",
           "description": "Monitor processing and delivery timelines.",
           "notes": "ForUsAll generally reviews your request within about two business days. After approval, checks usually arrive in about 2–3 weeks via USPS and wires typically complete in about 1–2 weeks depending on the receiving institution."
-        },
-        {
-          "step_number": 10,
-          "type": "participant-facing",
-          "visibility": "both",
-          "description": "If you cannot use the portal, request an Electronic Form.",
-          "notes": "If login issues or technical problems prevent portal use, contact ForUsAll to request a RightSignature Electronic Form. This is a slower alternative to the online process, so manage expectations accordingly."
         }
       ],
       "common_issues": [
         {
-          "issue": "The participant doesn't have a termination date in the Internal notes section of the DevRev Ticket",
-          "resolution": "Confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, create a note in the DevRev ticket for a Participant Advisory Associate to confirm the termination date in the payroll system or with the Plan Sponsor, update the participant's profile accordignly, and direct the participant to submit the request the next business day through the Portal. If the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan." 
+          "issue": "The participant termination date value is Null or Empty in the Internal notes.",
+          "resolution": "Confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, ask the participant to submit the request the next business day through the Portal. But if the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan. Don't proceed with the flow if the participant is still employed." 
         },
         {
-          "issue": "The participant has a termination date but doesn't have a termination status in the Internal notes section of the DevRev Ticket",
+          "issue": "The participant has a termination date but the eligibility status is not terminated in the Internal notes",
           "resolution": "Validate in the Internal notes section of the DevRev Ticket if with the employment period information that we have (hire date, termination date, rehire date) and the last payroll date, we can conclude that the participant's eligibility status must be terminated. If with that information, eligibility status should be terminated, create a note in the DevRev ticket for a Participant Advisory Associate to update the participant's eligibility status to terminated, update the participant's profile accordignly, and direct the participant to submit the request the next business day through the Portal; if the eligibility should be active, confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, create a note in the DevRev ticket for a Participant Advisory Associate to confirm the termination date in the payroll system or with the Plan Sponsor, update the participant's profile accordignly, and direct the participant to submit the request the next business day through the Portal. If the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan."
         },
         {
@@ -386,7 +378,7 @@
           "Must not state or imply that the $35 wire fee can be refunded; it is explicitly described as non-refundable.",
           "Must not guarantee faster processing or delivery than the approximate timelines provided for reviews, checks, and wires.",
           "Must not provide individualized tax advice; instead, clarify the standard withholding rules and direct participants to consult a tax professional.",
-          "Must not say that the portal is the only way to request a distribution; if portal access is not possible, the RightSignature Electronic Form is available as a backup method."
+          "Must not say that the portal is the only way to request a distribution; if portal access is not possible, the RightSignature Electronic Form is available as a backup method. However, it's always better to use the portal if possible."
         ],
         "must_do_if_unsure": [
           "If there is any doubt about a participant's vesting percentage or account sources, escalate to or contact ForUsAll Support for a records review before proceeding with a distribution.",
@@ -408,9 +400,9 @@
           "[https://www.irs.gov/retirement-plans/plan-participant-employee/rollovers-of-retirement-plan-and-ira-distributions](https://www.irs.gov/retirement-plans/plan-participant-employee/rollovers-of-retirement-plan-and-ira-distributions)"
         ],
         "contact": {
-          "email": "[help@forusall.com](mailto:help@forusall.com)",
+          "email": "help@forusall.com",
           "phone": "844-401-2253",
-          "support_hours": "Mon–Fri, 07:00–17:00 America/Los_Angeles"
+          "support_hours": "Monday - Friday, 7:00 AM - 5:00 PM Pacific Time"
         }
       }
     }
