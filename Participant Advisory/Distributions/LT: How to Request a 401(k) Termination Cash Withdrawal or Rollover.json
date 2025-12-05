@@ -168,7 +168,7 @@
           "type": "participant-facing",
           "visibility": "both",
           "description": "Ask the user to log in to their ForUsAll 401(k) participant portal.",
-          "notes": "We need to ensure to include this step. This was previously the first step. -- Ensure you have left your employer, can access the ForUsAll participant portal, and have your mailing address, banking details (for wires), and receiving institution information if doing a rollover. From the dashboard, click Loans & Distributions in the upper-right corner. Submitting through the portal is the fastest way to process your request."
+          "notes": "Ensure you have left your employer, can access the ForUsAll participant portal, and have your mailing address, banking details (for wires), and receiving institution information if doing a rollover. From the dashboard, click Loans & Distributions in the upper-right corner. Submitting through the portal is the fastest way to process your request."
         },
         { 
           "step_number": 3,
@@ -222,12 +222,24 @@
       ],
       "common_issues": [
         {
-          "issue": "The participant termination date value is Null or Empty in the Internal notes.",
-          "resolution": "Confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, ask the participant to submit the request the next business day through the Portal. But if the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan. Don't proceed with the flow if the participant is still employed." 
+          "issue": "The participant termination date value is Null or Empty in the Internal notes, there are employee deferrals, employer contributions or loan repayment in the last paycheck information,  and mentioned that they separated from service in the last 7 business days.",
+          "resolution": "Confirm the participant mentioned in the ticket that they are no longer employed by the company and their termiantion date is equal to or less than 7 business days. If that's the case, ask the participant to wait 7 business days after their final paycheck to be able to submit the distribution request through the Portal. But if the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan. Don't proceed with the flow if the participant is still employed." 
+        },
+        {
+          "issue": "The participant termination date value is Null or Empty in the Internal notes, there no are employee deferrals, employer contributions or loan repayment in the last paycheck information,  and mentioned that they separated from service in the last 7 business days.",
+          "resolution": "Confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, create a note in the DevRev ticket for a Participant Advisory Associate to confirm the termination date in the payroll system or with the Plan Sponsor, update the participant's profile accordignly, and direct the participant to submit the request the next business day through the Portal. If the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan." 
+        },
+        {
+          "issue": "The participant termination date value is Null or Empty in the Internal notes, there are employee deferrals, employer contributions or loan repayment in the last paycheck information,  and mentioned that they separated from service more than 7 business days ago.",
+          "resolution": "Confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, create a note in the DevRev ticket for a Participant Advisory Associate to confirm the termination date in the payroll system or with the Plan Sponsor, update the participant's profile accordignly, and direct the participant to submit the request the next business day through the Portal. If the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan." 
         },
         {
           "issue": "The participant has a termination date but the eligibility status is not terminated in the Internal notes",
           "resolution": "Validate in the Internal notes section of the DevRev Ticket if with the employment period information that we have (hire date, termination date, rehire date) and the last payroll date, we can conclude that the participant's eligibility status must be terminated. If with that information, eligibility status should be terminated, create a note in the DevRev ticket for a Participant Advisory Associate to update the participant's eligibility status to terminated, update the participant's profile accordignly, and direct the participant to submit the request the next business day through the Portal; if the eligibility should be active, confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, create a note in the DevRev ticket for a Participant Advisory Associate to confirm the termination date in the payroll system or with the Plan Sponsor, update the participant's profile accordignly, and direct the participant to submit the request the next business day through the Portal. If the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan."
+        },
+        {
+          "issue": "Participant says that the ForUsAll 401(k) Participant Portal displays their eligible distribution amount is zero.",
+          "resolution": "First, confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, ask the participant to submit the request the next business day through the Portal. But if the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan. Don't proceed with the flow if the participant is still employed.Confirm the participant mentioned in the ticket that they are no longer employed by the company. If that's the case, ask the participant to submit the request the next business day through the Portal. But if the participant is still employed, they would not be able to request a Separation of Service Distribution. Instead, offer the participant to request a hardship distribution or a loan. Don't proceed with the flow if the participant is still employed.."
         },
         {
           "issue": "Participant cannot log in or access the portal and MFA is enrolled.",
@@ -235,10 +247,10 @@
         },
         {
           "issue": "Participant cannot log in or access the portal and MFA is NOT enrolled.",
-          "resolution": "pending"
+          "resolution": "Share the login instructinos and the Distribution request process through the ForUsAll 401(k) Participant Portal with the participant"
         },
         {
-          "issue": "Separation of Service reason is not listed in the portal.",
+          "issue": "Separation of Service reason is not listed in the portal even though the participant has a termination date and the eligibility status terminated in the Internal notes.",
           "resolution": "Instruct the participant to select Default and proceed. If they are unsure whether their termination date has been recorded, advise them to contact ForUsAll Support to confirm that their employment status has been updated before continuing."
         },
         {
@@ -260,6 +272,14 @@
         {
           "issue": "Participant is unsure about the tax impact of a cash distribution.",
           "resolution": "Remind the participant that a 20% federal withholding applies to cash distributions and state withholding may also apply, and that the distribution is taxable income in the processing year. Recommend that they consult a tax professional for advice on their specific situation."
+        },
+        {
+          "issue": "Participant mentions that the loans and distribution section is not working/loading in the ForUsAll 401(k) Participant Portal.",
+          "resolution": "Instruct the participant to access the portal through a computer laptop since the section is not compatible with mobile devices. If they are using it in a computer laptop, instruct the participant to disable pop-up blockers."
+        },
+        {
+          "issue": "Any of the issues listed in the common issues section of this article cannot be solved through the resolutions provided",
+          "resolution": "Instruct the participant to request the Electronic Distribution or Rollover form"
         }
       ],
       "examples": [
